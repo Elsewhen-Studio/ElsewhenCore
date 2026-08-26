@@ -16,24 +16,6 @@ ACoreCharacterBase::ACoreCharacterBase() {
 	BasicAttributes = CreateDefaultSubobject<UBasicAttributes>(TEXT("BasicAttributes"));
 }
 
-// Called when the game starts or when spawned
-void ACoreCharacterBase::BeginPlay() {
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ACoreCharacterBase::Tick(float DeltaTime) {
-	Super::Tick(DeltaTime);
-
-}
-
-// Called to bind functionality to input
-void ACoreCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
-
 UAbilitySystemComponent* ACoreCharacterBase::GetAbilitySystemComponent() const {
 	return ASC;
 }
