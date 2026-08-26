@@ -2,11 +2,12 @@
 
 #include "ElsewhenCore.h"
 
+#include "GameplayTagsManager.h"
+
 #define LOCTEXT_NAMESPACE "FElsewhenCoreModule"
 
-void FElsewhenCoreModule::StartupModule()
-{
-	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
+void FElsewhenCoreModule::StartupModule() {
+	UGameplayTagsManager::Get().AddTagIniSearchPath(FPaths::ProjectPluginsDir() / TEXT("ElsewhenCore/Config/Tags"));
 }
 
 void FElsewhenCoreModule::ShutdownModule()
