@@ -4,6 +4,10 @@
 #include "CoreInstance.h"
 #include "GeneralProjectSettings.h"
 
+#if PLATFORM_WINDOWS
+	#include "Runtime/ApplicationCore/Public/Windows/WindowsPlatformApplicationMisc.h"
+#endif
+
 void UCoreInstance::Init() {
 	Super::Init();
 	
