@@ -8,7 +8,6 @@
 
 class UCameraComponent;
 class USpringArmComponent;
-class UInputComponent;
 class USceneComponent;
 
 class UPhysicsHandleComponent;
