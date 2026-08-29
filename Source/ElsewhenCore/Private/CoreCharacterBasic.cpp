@@ -64,9 +64,6 @@ void ACoreCharacterBasic::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 	
 	UpdateParallaxData();
-	
-	bIsGrabbing = IsValid(PhysicsHandle->GetGrabbedComponent());
-	
 	TraceLineFromCamera(FName("BaseTrace"), GrabDistance, ECC_Camera, HitResult);
 	GrabLocation();
 }
@@ -121,7 +118,7 @@ void ACoreCharacterBasic::UpdateParallaxData() {
 }
 
 void ACoreCharacterBasic::BeginInteraction(bool& bIsGrabSuccessful) {
-	if (!bIsGrabbing) {
+	if (!IsValid(PhysicsHandle->GetGrabbedComponent())) {
 		if (IsValid(HitResult.GetActor()) && HitResult.GetActor()->GetClass()->ImplementsInterface(UCoreInteractionInterface::StaticClass())) {
 			ICoreInteractionInterface::Execute_Use(HitResult.GetActor());
 		} else if (IsValid(HitResult.GetComponent())) {
@@ -138,7 +135,7 @@ void ACoreCharacterBasic::BeginInteraction(bool& bIsGrabSuccessful) {
 }
 
 void ACoreCharacterBasic::GrabLocation() {
-	if (bIsGrabbing) {
+	if (IsValid(PhysicsHandle->GetGrabbedComponent())) {
 		PhysicsHandle->SetTargetLocationAndRotation(CameraComponent->GetComponentLocation() + (CameraComponent->GetForwardVector() * GrabDistance), GetActorRotation());
 		if (IsValid(HitComponent)) {
 			HitComponent->SetRelativeRotation(FRotator(0, HitComponent->GetRelativeRotation().Yaw, 0), false, nullptr);
@@ -148,7 +145,7 @@ void ACoreCharacterBasic::GrabLocation() {
 
 bool ACoreCharacterBasic::TraceLineFromCamera(FName TraceTag, float Distance, ECollisionChannel Channel, FHitResult& OutResult) {
 	UWorld* World = GetWorld();
-	if (!bIsGrabbing && IsValid(World)) {
+	if (!IsValid(PhysicsHandle->GetGrabbedComponent()) && IsValid(World)) {
 		FVector Start = CameraComponent->GetComponentLocation();
 		FVector End = (CameraComponent->GetForwardVector() * GrabDistance) + Start;
 
@@ -165,15 +162,14 @@ bool ACoreCharacterBasic::TraceLineFromCamera(FName TraceTag, float Distance, EC
 }
 
 void ACoreCharacterBasic::StopGrab() {
-	if (bIsGrabbing) {
+	if (IsValid(PhysicsHandle->GetGrabbedComponent())) {
 		PhysicsHandle->GetGrabbedComponent()->SetCastShadow(true);
 		PhysicsHandle->ReleaseComponent();
-		bIsGrabbing = IsValid(PhysicsHandle->GetGrabbedComponent());
 	}
 }
 
 void ACoreCharacterBasic::ToggleGrab(bool& bIsGrabSuccessful) {
-	if (bIsGrabbing) {
+	if (IsValid(PhysicsHandle->GetGrabbedComponent())) {
 		StopGrab();
 	} else {
 		BeginInteraction(bIsGrabSuccessful);
@@ -181,7 +177,7 @@ void ACoreCharacterBasic::ToggleGrab(bool& bIsGrabSuccessful) {
 }
 
 void ACoreCharacterBasic::ShootGrab() {
-	if (bIsGrabbing) {
+	if (IsValid(PhysicsHandle->GetGrabbedComponent())) {
 		const float Strength = 5000.0f;
 		const FVector Velocity = CameraComponent->GetForwardVector() * Strength;
 
