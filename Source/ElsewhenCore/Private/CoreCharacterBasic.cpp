@@ -64,6 +64,9 @@ void ACoreCharacterBasic::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 	
 	UpdateParallaxData();
+	
+	bIsGrabbing = IsValid(PhysicsHandle->GetGrabbedComponent());
+	
 	TraceLineFromCamera(FName("BaseTrace"), GrabDistance, ECC_Camera, HitResult);
 	GrabLocation();
 }
@@ -128,8 +131,7 @@ void ACoreCharacterBasic::BeginInteraction(bool& bIsGrabSuccessful) {
 				if (UGameUserSettings::GetGameUserSettings()->GetShadowQuality() < 2) {
 					PhysicsHandle->GetGrabbedComponent()->SetCastShadow(false);
 				}
-				bIsGrabbing = IsValid(PhysicsHandle->GetGrabbedComponent());
-				bIsGrabSuccessful = bIsGrabbing;
+				bIsGrabSuccessful = IsValid(PhysicsHandle->GetGrabbedComponent());
 			}
 		}
 	}
@@ -186,6 +188,5 @@ void ACoreCharacterBasic::ShootGrab() {
 		PhysicsHandle->GetGrabbedComponent()->SetCastShadow(true);
 		PhysicsHandle->GetGrabbedComponent()->AddImpulse(Velocity, NAME_None, true);
 		PhysicsHandle->ReleaseComponent();
-		bIsGrabbing = IsValid(PhysicsHandle->GetGrabbedComponent());
 	}
 }
