@@ -79,8 +79,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite) float WalkBobRoll = 2.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite) FVector BaseCamLoc;
 	
-	UPROPERTY(BlueprintReadWrite, Category = "Interaction") bool bIsGrabbing;
-	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay) FVector GunOffset;
 	UPROPERTY(EditDefaultsOnly, Category=Projectile) TSubclassOf<class ACoreCannonProjectile> ProjectileClass;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay) 	USoundBase* FireSound;
