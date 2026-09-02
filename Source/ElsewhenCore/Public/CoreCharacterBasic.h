@@ -65,19 +65,26 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Interaction") float GrabDistance = 512.0f;
 	UPROPERTY(BlueprintReadOnly, Category = "Interaction") FHitResult HitResult;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Frequencies") float WalkFrequency = 10.0f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Frequencies") float SprintFrequency = 15.0f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float InterpSpeed = 5.0f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Timers") float IdleTimer;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Timers") float BobTimer;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float IdlePitch = 0.5f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float BobHeight = 6.5f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float BobRoll = 0.3f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float SprintBobHeight = 2.4f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float SprintBobRoll = 2.4f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float WalkBobHeight = 2.0f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) float WalkBobRoll = 2.0f;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite) FVector BaseCamLoc;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob|Frequencies") float WalkFrequency = 10.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob|Frequencies") float SprintFrequency = 15.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob") float InterpSpeed = 5.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob|Timers") float IdleTimer;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob|Timers") float BobTimer;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob") float IdlePitch = 0.5f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob") float BobHeight = 6.5f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob") float BobRoll = 0.3f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob") float SprintBobHeight = 2.4f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob") float SprintBobRoll = 2.4f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob") float WalkBobHeight = 2.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob") float WalkBobRoll = 2.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Headbob") FVector BaseCamLoc;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Tilt") float TiltRoll;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Tilt") float TiltPitchMax = 2.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Tilt") float TiltPitch;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Tilt") float TiltRollMax = 4.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Tilt") float TiltInterpSpeed = 8.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Camera|Animations|Tilt") float TiltFullSpeed = RunSpeed;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=Gameplay) FVector GunOffset;
 	UPROPERTY(EditDefaultsOnly, Category=Projectile) TSubclassOf<class ACoreCannonProjectile> ProjectileClass;
