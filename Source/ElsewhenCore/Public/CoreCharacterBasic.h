@@ -34,7 +34,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }
-    UPhysicsHandleComponent* GetPhysicsHandle() const { return PhysicsHandle; }
+    UFUNCTION(BlueprintCallable) UPhysicsHandleComponent* GetPhysicsHandle() const { return PhysicsHandle; }
 	UCameraComponent* GetCameraComponent() const { return CameraComponent; }
     FHitResult GetHitResult() const { return HitResult; }
 	
